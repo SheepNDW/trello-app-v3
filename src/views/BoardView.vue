@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import Card from '@/components/Card.vue'
 
 const toggle = ref(false)
 </script>
@@ -9,37 +10,7 @@ const toggle = ref(false)
     <div id="board-wrapper" class="h-full w-full p-4 block overflow-auto">
       <div class="flex flex-row items-start">
         <!-- card -->
-        <div
-          v-for="i in 3"
-          :key="i"
-          class="bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 min-w-[300px]"
-          @click="toggle = !toggle"
-        >
-          <!-- column -->
-          <div class="block overflow-hidden text-ellipsis w-4/5 text-lg">標題</div>
-          <!-- <textarea class="resize-none overflow-hidden border-none w-full p-1 h-8 block"></textarea> -->
-
-          <!-- tasks -->
-          <div class="block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none">
-            <div class="block font-bold">卡片標題</div>
-            <div class="overflow-hidden text-ellipsis">卡片內容</div>
-          </div>
-
-          <div class="block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none">
-            <div class="block font-bold">卡片標題</div>
-            <div class="overflow-hidden text-ellipsis">卡片內容</div>
-          </div>
-          <!-- tasks -->
-
-          <!-- add new task -->
-          <div class="my-3">
-            <div class="bg-slate-200 p-2 hover:bg-slate-300 cursor-pointer text-slate-500">
-              + 點擊以新增任務
-            </div>
-            <!-- <textarea class="block w-full resize-none p-2 h-10" placeholder="為這張卡片輸入標題"></textarea> -->
-          </div>
-          <!-- add new task -->
-        </div>
+        <Card />
         <!-- card -->
 
         <!-- add new card -->
