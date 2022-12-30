@@ -1,0 +1,21 @@
+{
+  "extends": "@antfu",
+  "parserOptions": {
+    "ecmaVersion": 2022
+  },
+  "rules": {
+    "no-console": "off",
+    "antfu/if-newline": "off",
+    "brace-style": [
+      "error",
+      "1tbs",
+      {"allowSingleLine": true}
+    ],
+    "space-before-function-paren": "off",
+    "@typescript-eslint/space-before-function-paren": [
+      "error", 
+      {"anonymous": "always", "named": "never", "asyncArrow": "always"}
+    ],
+    "vue/singleline-html-element-content-newline": "off"
+  }
+}
