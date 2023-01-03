@@ -1,7 +1,8 @@
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { TasksList } from '@/types'
 
-const defaultList = [
+export const defaultList: TasksList = [
   {
     id: '61bblwnux0tlb1vp3qk',
     title: 'Hello Vue.js!',
@@ -37,5 +38,15 @@ const defaultList = [
 ]
 
 export const useStore = defineStore('store', () => {
-  return {}
+  const lists = ref<TasksList>(defaultList)
+
+  const updateListTitle = (cardId = '', title = '') => {
+    const card = lists.value.find(list => list.id === cardId)
+    if (card) card.title = title
+  }
+
+  return {
+    lists,
+    updateListTitle,
+  }
 })
