@@ -1,6 +1,10 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import Card from '@/components/Card.vue'
+import { useStore } from '@/stores'
+
+const store = useStore()
+const list = computed(() => store.lists)
 
 const toggle = ref(false)
 </script>
@@ -10,7 +14,7 @@ const toggle = ref(false)
     <div id="board-wrapper" class="h-full w-full p-4 block overflow-auto">
       <div class="flex flex-row items-start">
         <!-- card -->
-        <Card />
+        <Card v-for="card in list" :key="card.id" v-bind="card" />
         <!-- card -->
 
         <!-- add new card -->
