@@ -56,7 +56,7 @@ useFocus(target, { initialValue: true })
     <!-- tasks -->
 
     <!-- add new task -->
-    <AddNewTask />
+    <AddNewTask :id="id" />
     <!-- add new task -->
   </div>
 </template>
