@@ -3,7 +3,7 @@ import { computed, ref } from 'vue'
 import { useStore } from '@/stores'
 
 const store = useStore()
-const { updateTask, closeEditTask } = store
+const { updateTask, closeEditTask, deleteTask } = store
 const currentEditTask = computed(() => store.currentEditTask)
 
 const title = ref(currentEditTask.value?.title)
@@ -33,7 +33,10 @@ const content = ref(currentEditTask.value?.content)
       />
 
       <div class="text-right mt-4">
-        <button class="border bg-rose-500 text-white py-2 px-4 hover:bg-rose-700 mr-6">
+        <button
+          class="border bg-rose-500 text-white py-2 px-4 hover:bg-rose-700 mr-6"
+          @click="deleteTask(currentEditTask!.cardId, currentEditTask!.id)"
+        >
           刪除
         </button>
         <button
