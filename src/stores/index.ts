@@ -1,6 +1,6 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
-import type { TasksList } from '@/types'
+import type { CurrentEditTask, TasksList } from '@/types'
 import { randomUUID } from '@/utils'
 
 export const defaultList: TasksList = [
@@ -41,6 +41,8 @@ export const defaultList: TasksList = [
 export const useStore = defineStore('store', () => {
   const lists = ref<TasksList>(defaultList)
 
+  const currentEditTask = ref<CurrentEditTask | null>(null)
+
   const updateListTitle = (cardId = '', title = '') => {
     const card = lists.value.find(list => list.id === cardId)
     if (card) card.title = title
@@ -57,9 +59,26 @@ export const useStore = defineStore('store', () => {
     })
   }
 
+  const openEditTask = (cardId: string, taskId: string) => {
+    const card = lists.value.find(list => list.id === cardId)!
+    const task = card.tasks.find(task => task.id === taskId)!
+
+    currentEditTask.value = {
+      cardId,
+      ...task,
+    }
+  }
+
+  const closeEditTask = () => {
+    currentEditTask.value = null
+  }
+
   return {
     lists,
     updateListTitle,
     addTask,
+    currentEditTask,
+    openEditTask,
+    closeEditTask,
   }
 })

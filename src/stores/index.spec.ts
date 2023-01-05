@@ -39,4 +39,30 @@ describe('Store', () => {
 
     expect(result?.tasks.length).toBe(3)
   })
+
+  it('openEditTask()', () => {
+    const store = useStore()
+    const cardId = store.lists[0].id
+    const taskId = store.lists[0].tasks[0].id
+    const { openEditTask } = store
+
+    openEditTask(cardId, taskId)
+
+    expect(store.currentEditTask).toEqual({
+      cardId,
+      ...store.lists[0].tasks[0],
+    })
+  })
+
+  it('closeEditTask()', () => {
+    const store = useStore()
+    const cardId = store.lists[0].id
+    const taskId = store.lists[0].tasks[0].id
+    const { openEditTask, closeEditTask } = store
+    openEditTask(cardId, taskId)
+
+    closeEditTask()
+
+    expect(store.currentEditTask).toEqual(null)
+  })
 })

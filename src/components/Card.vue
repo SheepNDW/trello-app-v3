@@ -8,19 +8,20 @@ import type { Tasks } from '@/types'
 import { useStore } from '@/stores'
 
 const props = defineProps<{
+  /** 卡片 id */
   id: string
   title: string
   tasks: Tasks
 }>()
 
-const store = useStore()
+const { updateListTitle, openEditTask } = useStore()
 
 const listTitle = ref(props.title)
 const isTitleEditing = ref(false)
 const setIsTitleEditing = (bool: boolean) => isTitleEditing.value = bool
 
 watch(isTitleEditing, () => {
-  store.updateListTitle(props.id, listTitle.value)
+  updateListTitle(props.id, listTitle.value)
 })
 
 const target = ref<HTMLTextAreaElement | null>(null)
@@ -52,7 +53,12 @@ useFocus(target, { initialValue: true })
     />
 
     <!-- tasks -->
-    <TaskItem v-for="task in tasks" :key="task.id" v-bind="task" />
+    <TaskItem
+      v-for="task in tasks"
+      :key="task.id"
+      v-bind="task"
+      @click="openEditTask(props.id, task.id)"
+    />
     <!-- tasks -->
 
     <!-- add new task -->
