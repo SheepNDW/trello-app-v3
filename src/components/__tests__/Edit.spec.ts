@@ -3,7 +3,6 @@ import type { VueWrapper } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import EditBox from '../EditBox.vue'
-import { useStore } from '@/stores'
 
 describe('EditCard.vue', () => {
   let wrapper: VueWrapper<any>
