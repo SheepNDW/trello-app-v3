@@ -65,4 +65,15 @@ describe('Store', () => {
 
     expect(store.currentEditTask).toEqual(null)
   })
+
+  it('updateTask()', () => {
+    const mockCardId = defaultList[0].id
+    const mockTaskId = defaultList[0].tasks[0].id
+    const store = useStore()
+
+    store.updateTask(mockCardId, mockTaskId, 'new title', 'new content')
+
+    expect(store.lists[0].tasks[0].title).toBe('new title')
+    expect(store.lists[0].tasks[0].content).toBe('new content')
+  })
 })
