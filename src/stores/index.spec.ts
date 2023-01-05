@@ -76,4 +76,13 @@ describe('Store', () => {
     expect(store.lists[0].tasks[0].title).toBe('new title')
     expect(store.lists[0].tasks[0].content).toBe('new content')
   })
+
+  it('deleteTask', () => {
+    const mockCardId = defaultList[1].id
+    const mockTaskId = defaultList[1].tasks[0].id
+    const store = useStore()
+
+    store.deleteTask(mockCardId, mockTaskId)
+    expect(store.lists[1].tasks.length).toBe(1)
+  })
 })
