@@ -88,6 +88,16 @@ export const useStore = defineStore('store', () => {
     closeEditTask()
   }
 
+  const addNewCard = (title: string) => {
+    if (!title.trim()) return
+
+    lists.value.push({
+      id: randomUUID(),
+      title,
+      tasks: [],
+    })
+  }
+
   return {
     lists,
     updateListTitle,
@@ -97,5 +107,6 @@ export const useStore = defineStore('store', () => {
     closeEditTask,
     updateTask,
     deleteTask,
+    addNewCard,
   }
 })

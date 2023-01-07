@@ -2,13 +2,23 @@
 import { useFocus } from '@vueuse/core'
 import { ref } from 'vue'
 import { vOnClickOutside } from '@vueuse/components'
+import { useStore } from '@/stores'
 
 const target = ref<HTMLInputElement | null>(null)
 useFocus(target, { initialValue: true })
 
+const store = useStore()
+const { addNewCard } = store
+
 const isEditing = ref(false)
 const setIsEditing = (bool: boolean) => isEditing.value = bool
 const title = ref('')
+
+const addCard = () => {
+  addNewCard(title.value)
+  title.value = ''
+  isEditing.value = false
+}
 </script>
 
 <template>
@@ -32,6 +42,7 @@ const title = ref('')
         type="text"
         placeholder="為列表輸入標題"
         class="block w-full p-2"
+        @keydown.enter="addCard"
       >
     </div>
   </div>
