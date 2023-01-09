@@ -16,6 +16,7 @@ describe('BoardView.vue', () => {
             createSpy: vi.fn,
           }),
         ],
+        stubs: { RouterView: true },
       },
     })
     expect(wrapper.html()).toMatchSnapshot()

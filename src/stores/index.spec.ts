@@ -1,5 +1,6 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
+import { useRouter } from 'vue-router'
 import { defaultList, useStore } from './index'
 
 /**
@@ -9,6 +10,20 @@ import { defaultList, useStore } from './index'
 const cryptoMock = { randomUUID: vi.fn(() => +Date.now()) }
 vi.stubGlobal('crypto', cryptoMock)
 
+const mockLocalStorage = {
+  getItem: vi.fn(),
+  setItem: vi.fn(),
+}
+vi.stubGlobal('localStorage', mockLocalStorage)
+
+const mockPush = vi.fn()
+vi.mock('vue-router', () => ({
+  useRoute: vi.fn(),
+  useRouter: () => ({
+    push: mockPush,
+  }),
+}))
+
 describe('Store', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
@@ -16,6 +31,7 @@ describe('Store', () => {
 
   it('default tasks list', () => {
     const store = useStore()
+    expect(localStorage.getItem).toHaveBeenCalledWith('trello-lists')
     expect(store.lists).toEqual(defaultList)
   })
 
@@ -25,6 +41,7 @@ describe('Store', () => {
     store.updateListTitle(mockCardId, 'hello world')
 
     expect(store.lists[0].title).toBe('hello world')
+    // expect(localStorage.setItem).toHaveBeenCalled()
   })
 
   it('addTask()', () => {
@@ -38,9 +55,11 @@ describe('Store', () => {
     const result = store.lists.find(list => list.id === cardId)
 
     expect(result?.tasks.length).toBe(3)
+    expect(localStorage.setItem).toHaveBeenCalled()
   })
 
   it('openEditTask()', () => {
+    const router = useRouter()
     const store = useStore()
     const cardId = store.lists[0].id
     const taskId = store.lists[0].tasks[0].id
@@ -52,9 +71,11 @@ describe('Store', () => {
       cardId,
       ...store.lists[0].tasks[0],
     })
+    expect(router.push).toHaveBeenCalledWith(`/task/${cardId}/${taskId}`)
   })
 
   it('closeEditTask()', () => {
+    const router = useRouter()
     const store = useStore()
     const cardId = store.lists[0].id
     const taskId = store.lists[0].tasks[0].id
@@ -64,6 +85,7 @@ describe('Store', () => {
     closeEditTask()
 
     expect(store.currentEditTask).toEqual(null)
+    expect(router.push).toHaveBeenCalledWith('/')
   })
 
   it('updateTask()', () => {
@@ -75,6 +97,7 @@ describe('Store', () => {
 
     expect(store.lists[0].tasks[0].title).toBe('new title')
     expect(store.lists[0].tasks[0].content).toBe('new content')
+    expect(localStorage.setItem).toHaveBeenCalled()
   })
 
   it('deleteTask()', () => {
@@ -84,6 +107,7 @@ describe('Store', () => {
 
     store.deleteTask(mockCardId, mockTaskId)
     expect(store.lists[1].tasks.length).toBe(1)
+    expect(localStorage.setItem).toHaveBeenCalled()
   })
 
   it('addNewCard()', () => {
@@ -92,5 +116,6 @@ describe('Store', () => {
     store.addNewCard('test')
 
     expect(store.lists.length).toBe(3)
+    expect(localStorage.setItem).toHaveBeenCalled()
   })
 })
