@@ -1,5 +1,6 @@
 import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
+import { useRouter } from 'vue-router'
 import type { CurrentEditTask, TaskItem, TasksList } from '@/types'
 import { randomUUID } from '@/utils'
 
@@ -39,6 +40,7 @@ export const defaultList: TasksList = [
 ]
 
 export const useStore = defineStore('store', () => {
+  const router = useRouter()
   const lists = ref<TasksList>(JSON.parse(localStorage.getItem('trello-lists') || 'null') || defaultList)
 
   const currentEditTask = ref<CurrentEditTask | null>(null)
@@ -67,10 +69,13 @@ export const useStore = defineStore('store', () => {
       cardId,
       ...task,
     }
+
+    router.push(`/task/${cardId}/${taskId}`)
   }
 
   const closeEditTask = () => {
     currentEditTask.value = null
+    router.push('/')
   }
 
   const updateTask = (cardId: string, taskId: string, title = '', content = '') => {

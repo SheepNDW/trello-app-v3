@@ -3,12 +3,10 @@ import { computed } from 'vue'
 import draggable from 'vuedraggable'
 import Card from '@/components/Card.vue'
 import { useStore } from '@/stores'
-import EditBox from '@/components/EditBox.vue'
 import AddNewCard from '@/components/AddNewCard.vue'
 
 const store = useStore()
 const list = computed(() => store.lists)
-const currentEditTask = computed(() => store.currentEditTask)
 </script>
 
 <template>
@@ -32,8 +30,8 @@ const currentEditTask = computed(() => store.currentEditTask)
         </template>
       </draggable>
     </div>
-
-    <!-- lightbox -->
-    <EditBox v-if="currentEditTask?.id" />
   </div>
+
+  <!-- lightbox -->
+  <RouterView />
 </template>

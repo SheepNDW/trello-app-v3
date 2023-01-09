@@ -6,6 +6,13 @@ const router = createRouter({
     {
       path: '/',
       component: () => import('@/views/BoardView.vue'),
+      children: [
+        {
+          path: 'task/:cardId/:taskId',
+          name: 'task',
+          component: () => import('@/views/TaskView.vue'),
+        },
+      ],
     },
   ],
 })
