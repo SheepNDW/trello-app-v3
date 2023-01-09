@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed } from 'vue'
+import draggable from 'vuedraggable'
 import Card from '@/components/Card.vue'
 import { useStore } from '@/stores'
 import EditBox from '@/components/EditBox.vue'
@@ -13,15 +14,23 @@ const currentEditTask = computed(() => store.currentEditTask)
 <template>
   <div class="bg-emerald-700 h-[100vh] w-full block overflow-x-auto overflow-y-hidden">
     <div id="board-wrapper" class="h-full w-full p-4 block overflow-auto">
-      <div class="flex flex-row items-start">
+      <draggable
+        :list="list"
+        group="card"
+        item-key="id"
+        ghost-class="opacity-30"
+        class="flex flex-row items-start"
+      >
         <!-- card -->
-        <Card v-for="card in list" :key="card.id" v-bind="card" />
-        <!-- card -->
+        <template #item="{ element }">
+          <Card v-bind="element" />
+        </template>
 
         <!-- add new card -->
-        <AddNewCard />
-        <!-- add new card -->
-      </div>
+        <template #footer>
+          <AddNewCard />
+        </template>
+      </draggable>
     </div>
 
     <!-- lightbox -->
