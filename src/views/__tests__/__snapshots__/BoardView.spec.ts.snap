@@ -4,43 +4,45 @@ exports[`BoardView.vue > renders correctly 1`] = `
 "<div class=\\"bg-emerald-700 h-[100vh] w-full block overflow-x-auto overflow-y-hidden\\">
   <div id=\\"board-wrapper\\" class=\\"h-full w-full p-4 block overflow-auto\\">
     <div class=\\"flex flex-row items-start\\">
-      <!-- card -->
-      <div data-test=\\"root\\" class=\\"bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 min-w-[300px]\\">
+      <div data-test=\\"root\\" class=\\"bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 min-w-[300px]\\" data-draggable=\\"true\\">
         <!-- column -->
         <div class=\\"block overflow-hidden text-ellipsis w-4/5 text-lg\\" data-test=\\"titleText\\">Hello Vue.js!</div><!-- tasks -->
-        <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\">
-          <div class=\\"block font-bold\\">Vue.js 測試</div>
-          <div class=\\"overflow-hidden text-ellipsis\\">內文區塊</div>
-        </div>
-        <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\">
-          <div class=\\"block font-bold\\">Vue.js 測試2</div>
-          <div class=\\"overflow-hidden text-ellipsis\\">內文區塊2</div>
+        <div>
+          <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\" data-draggable=\\"true\\">
+            <div class=\\"block font-bold\\">Vue.js 測試</div>
+            <div class=\\"overflow-hidden text-ellipsis\\">內文區塊</div>
+          </div>
+          <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\" data-draggable=\\"true\\">
+            <div class=\\"block font-bold\\">Vue.js 測試2</div>
+            <div class=\\"overflow-hidden text-ellipsis\\">內文區塊2</div>
+          </div>
         </div><!-- tasks -->
         <!-- add new task -->
         <div class=\\"my-3\\" data-test=\\"root\\">
           <div data-test=\\"addTaskBtn\\" class=\\"bg-slate-200 p-2 hover:bg-slate-300 cursor-pointer text-slate-500\\"> + 點擊以新增任務 </div>
         </div><!-- add new task -->
       </div>
-      <div data-test=\\"root\\" class=\\"bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 min-w-[300px]\\">
+      <div data-test=\\"root\\" class=\\"bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 min-w-[300px]\\" data-draggable=\\"true\\">
         <!-- column -->
         <div class=\\"block overflow-hidden text-ellipsis w-4/5 text-lg\\" data-test=\\"titleText\\">Hello Laravel!</div><!-- tasks -->
-        <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\">
-          <div class=\\"block font-bold\\">Laravel 測試</div>
-          <div class=\\"overflow-hidden text-ellipsis\\">內文區塊</div>
-        </div>
-        <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\">
-          <div class=\\"block font-bold\\">Laravel 測試2</div>
-          <div class=\\"overflow-hidden text-ellipsis\\">內文區塊2</div>
+        <div>
+          <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\" data-draggable=\\"true\\">
+            <div class=\\"block font-bold\\">Laravel 測試</div>
+            <div class=\\"overflow-hidden text-ellipsis\\">內文區塊</div>
+          </div>
+          <div class=\\"block my-2 w-full py-2 px-3 bg-white overflow-hidden select-none\\" data-draggable=\\"true\\">
+            <div class=\\"block font-bold\\">Laravel 測試2</div>
+            <div class=\\"overflow-hidden text-ellipsis\\">內文區塊2</div>
+          </div>
         </div><!-- tasks -->
         <!-- add new task -->
         <div class=\\"my-3\\" data-test=\\"root\\">
           <div data-test=\\"addTaskBtn\\" class=\\"bg-slate-200 p-2 hover:bg-slate-300 cursor-pointer text-slate-500\\"> + 點擊以新增任務 </div>
         </div><!-- add new task -->
-      </div><!-- card -->
-      <!-- add new card -->
+      </div>
       <div class=\\"bg-slate-200 block border rounded-sm p-2 mx-2 border-gray-500 w-[300px] cursor-pointer bg-opacity-70 hover:bg-opacity-90 min-w-[300px]\\">
         <div data-test=\\"addCardBtn\\" class=\\"block select-none\\"> + 新增其他列表 </div>
-      </div><!-- add new card -->
+      </div>
     </div>
   </div><!-- lightbox -->
   <!--v-if-->
