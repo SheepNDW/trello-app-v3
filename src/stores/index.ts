@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { defineStore } from 'pinia'
 import type { CurrentEditTask, TaskItem, TasksList } from '@/types'
 import { randomUUID } from '@/utils'
@@ -39,7 +39,7 @@ export const defaultList: TasksList = [
 ]
 
 export const useStore = defineStore('store', () => {
-  const lists = ref<TasksList>(defaultList)
+  const lists = ref<TasksList>(JSON.parse(localStorage.getItem('trello-lists') || 'null') || defaultList)
 
   const currentEditTask = ref<CurrentEditTask | null>(null)
 
@@ -97,6 +97,15 @@ export const useStore = defineStore('store', () => {
       tasks: [],
     })
   }
+
+  // 當 list 變動時，將變動後的值存入 localStorage
+  watch(
+    () => lists.value,
+    (val) => {
+      localStorage.setItem('trello-lists', JSON.stringify(val))
+    },
+    { deep: true },
+  )
 
   return {
     lists,
