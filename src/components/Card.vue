@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
+import draggable from 'vuedraggable'
 import { useFocus } from '@vueuse/core'
 import { vOnClickOutside } from '@vueuse/components'
 import AddNewTask from './AddNewTask.vue'
@@ -53,12 +54,14 @@ useFocus(target, { initialValue: true })
     />
 
     <!-- tasks -->
-    <TaskItem
-      v-for="task in tasks"
-      :key="task.id"
-      v-bind="task"
-      @click="openEditTask(props.id, task.id)"
-    />
+    <draggable :list="tasks" item-key="id" group="task" ghost-class="opacity-30">
+      <template #item="{ element }">
+        <TaskItem
+          v-bind="element"
+          @click="openEditTask(props.id, element.id)"
+        />
+      </template>
+    </draggable>
     <!-- tasks -->
 
     <!-- add new task -->
