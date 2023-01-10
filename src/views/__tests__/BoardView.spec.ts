@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import BoardViewVue from '../BoardView.vue'
-import { defaultList } from '@/stores'
+import { defaultList } from '@/stores/fixture'
 import router from '@/router'
 
 describe('BoardView.vue', () => {

@@ -2,7 +2,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { type VueWrapper, mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import Card from '../Card.vue'
-import { defaultList } from '@/stores'
+import { defaultList } from '@/stores/fixture'
 import router from '@/router'
 
 describe('Card.vue', () => {

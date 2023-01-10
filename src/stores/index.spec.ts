@@ -1,7 +1,9 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
 import { useRouter } from 'vue-router'
-import { defaultList, useStore } from './index'
+import { flushPromises } from '@vue/test-utils'
+import { defaultList } from './fixture'
+import { useStore } from './index'
 
 /**
  * vitest: TypeError: crypto.randomUUID is not a function
@@ -35,13 +37,15 @@ describe('Store', () => {
     expect(store.lists).toEqual(defaultList)
   })
 
-  it('updateListTitle()', () => {
+  it('updateListTitle()', async () => {
     const mockCardId = defaultList[0].id
     const store = useStore()
     store.updateListTitle(mockCardId, 'hello world')
 
+    await flushPromises()
+
     expect(store.lists[0].title).toBe('hello world')
-    // expect(localStorage.setItem).toHaveBeenCalled()
+    expect(localStorage.setItem).toHaveBeenCalled()
   })
 
   it('addTask()', () => {
