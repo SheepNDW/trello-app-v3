@@ -47,5 +47,5 @@ exports[`BoardView.vue > renders correctly 1`] = `
   </div>
 </div>
 <!-- lightbox -->
-<router-view-stub></router-view-stub>"
+<router-view-stub name=\\"default\\"></router-view-stub>"
 `;

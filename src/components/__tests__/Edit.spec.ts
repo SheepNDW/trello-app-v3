@@ -3,6 +3,7 @@ import type { VueWrapper } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import EditBox from '../EditBox.vue'
+import router from '@/router'
 
 describe('EditCard.vue', () => {
   let wrapper: VueWrapper<any>
@@ -25,6 +26,7 @@ describe('EditCard.vue', () => {
               },
             },
           }),
+          router,
         ],
       },
     })

@@ -3,6 +3,7 @@ import { type VueWrapper, mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import Card from '../Card.vue'
 import { defaultList } from '@/stores'
+import router from '@/router'
 
 describe('Card.vue', () => {
   describe('list title', () => {
@@ -17,6 +18,7 @@ describe('Card.vue', () => {
               stubActions: false,
               createSpy: vi.fn,
             }),
+            router,
           ],
         },
       })

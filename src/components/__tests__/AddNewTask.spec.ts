@@ -3,6 +3,7 @@ import type { VueWrapper } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import AddNewTask from '../AddNewTask.vue'
+import router from '@/router'
 
 describe('AddNewTask.vue', () => {
   let wrapper: VueWrapper<any>
@@ -18,6 +19,7 @@ describe('AddNewTask.vue', () => {
             stubActions: false,
             createSpy: vi.fn,
           }),
+          router,
         ],
       },
     })

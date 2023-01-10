@@ -3,6 +3,7 @@ import type { VueWrapper } from '@vue/test-utils'
 import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import AddNewCard from '../AddNewCard.vue'
+import router from '@/router'
 
 describe('AddNewCard.vue', () => {
   let wrapper: VueWrapper<any>
@@ -15,6 +16,7 @@ describe('AddNewCard.vue', () => {
             stubActions: false,
             createSpy: vi.fn,
           }),
+          router,
         ],
       },
     })

@@ -3,6 +3,7 @@ import { mount } from '@vue/test-utils'
 import { createTestingPinia } from '@pinia/testing'
 import BoardViewVue from '../BoardView.vue'
 import { defaultList } from '@/stores'
+import router from '@/router'
 
 describe('BoardView.vue', () => {
   it('renders correctly', () => {
@@ -15,6 +16,7 @@ describe('BoardView.vue', () => {
             },
             createSpy: vi.fn,
           }),
+          router,
         ],
         stubs: { RouterView: true },
       },
